@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Application/Registration Form</title>
+    <!-- Load Tailwind CSS CDN for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        /* Custom CSS for print styling simulation */
+        @media print {
+            body { background-color: white !important; }
+            #app-container {
+                box-shadow: none !important;
+                border: 1px solid #ccc;
+                padding: 1.5rem;
+            }
+            #print-button, #new-application-button { display: none; }
+        }
+    </style>
+    <!-- Load jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body class="min-h-screen flex items-start justify-center p-4 sm:p-8">
+
+    <div id="app-container" class="w-full max-w-3xl bg-white shadow-2xl rounded-xl p-6 md:p-10 border border-gray-50 mt-10">
+
+        <!-- Initial Form View -->
+        <div id="registration-form-view">
+            <!-- Updated Heading -->
+            <h1 class="text-3xl font-extrabold text-blue-700 mb-2">Registration Form</h1>
+            <p class="text-gray-500 mb-8">Please complete all required fields below to submit your formal application.</p>
+
+            <form id="application-form" class="space-y-6">
+
+                <!-- PERSONAL DETAILS SECTION -->
+                <h3 class="pt-4 text-xl font-semibold text-gray-800 border-t border-gray-200 mt-4">Personal Details</h3>
+
+                <!-- First Name -->
+                <div>
+                    <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <input type="text" id="first-name" name="firstName" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="Enter your first name">
+                </div>
+                
+                <!-- Middle Name -->
+                <div>
+                    <label for="middle-name" class="block text-sm font-medium text-gray-700 mb-1">Middle Name (Optional)</label>
+                    <input type="text" id="middle-name" name="middleName"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="Enter your middle name">
+                </div>
+
+                <!-- Last Name -->
+                <div>
+                    <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                    <input type="text" id="last-name" name="lastName" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="Enter your last name">
+                </div>
+
+                <!-- Email Address -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="name@example.com">
+                </div>
+
+                <!-- Phone Number -->
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="(555) 555-5555">
+                </div>
+                
+                <!-- Date of Birth -->
+                <div>
+                    <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm">
+                </div>
+
+                <!-- Gender -->
+                <div>
+                    <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                    <select id="gender" name="gender" required
+                            class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm">
+                        <option value="">-- Select Gender --</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Non-binary">Non-binary</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                </div>
+
+
+                <!-- CONTACT ADDRESS SECTION -->
+                <h3 class="pt-4 text-xl font-semibold text-gray-800 border-t border-gray-200 mt-4">Contact Address</h3>
+
+                <!-- Street Address -->
+                <div>
+                    <label for="street-address" class="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
+                    <input type="text" id="street-address" name="streetAddress" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="e.g., 123 Main Street">
+                </div>
+                
+                <!-- City -->
+                <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                    <input type="text" id="city" name="city" required
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                           placeholder="e.g., Springfield">
+                </div>
+
+                <!-- State/Province and Postal Code (side-by-side on large screens) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="state-province" class="block text-sm font-medium text-gray-700 mb-1">State / Province</label>
+                        <input type="text" id="state-province" name="stateProvince" required
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                               placeholder="e.g., CA / ON">
+                    </div>
+                    <div>
+                        <label for="postal-code" class="block text-sm font-medium text-gray-700 mb-1">Postal / Zip Code</label>
+                        <input type="text" id="postal-code" name="postalCode" required
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                               placeholder="e.g., 90210">
+                    </div>
+                </div>
+
+
+                <!-- PROGRAM SELECTION SECTION -->
+                <h3 class="pt-4 text-xl font-semibold text-gray-800 border-t border-gray-200 mt-4">Program Selection</h3>
+
+                <!-- Application Type -->
+                <div>
+                    <label for="application-type" class="block text-sm font-medium text-gray-700 mb-1">Desired Program/Application Type</label>
+                    <select id="application-type" name="applicationType" required
+                            class="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm">
+                        <option value="">-- Select Program --</option>
+                        <option value="Project Management Certification">Project Management Certification</option>
+                        <option value="Data Science Bootcamp">Data Science Bootcamp</option>
+                        <option value="Executive Leadership Workshop">Executive Leadership Workshop</option>
+                        <option value="Software Development Intensive">Software Development Intensive</option>
+                        <option value="Financial Modeling Course">Financial Modeling Course</option>
+                    </select>
+                </div>
+
+                <!-- Statement of Interest -->
+                <div>
+                    <label for="statement" class="block text-sm font-medium text-gray-700 mb-1">Statement of Interest (Min 100 characters)</label>
+                    <textarea id="statement" name="statement" rows="5" required minlength="100"
+                              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 shadow-sm"
+                              placeholder="Describe your interest in this program..."></textarea>
+                </div>
+
+                <!-- Submission Button -->
+                <button type="submit" id="submit-button"
+                        class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+
+        <!-- Success/Display View (Initially Hidden) -->
+        <div id="submission-success-view" class="hidden text-center">
+            <div class="mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h2 class="text-3xl font-bold text-gray-800 mt-4 mb-2">Application Submitted Successfully!</h2>
+                <p class="text-gray-600">Your information has been received. Please review and print this confirmation.</p>
+            </div>
+
+            <!-- Displayed Data Area -->
+            <div id="submitted-data-container" class="text-left bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <h3 class="text-xl font-semibold text-blue-700 border-b pb-2 mb-4">Application Details Summary</h3>
+                <!-- Data will be populated here by JavaScript -->
+            </div>
+
+            <div class="mt-8 flex justify-center space-x-4">
+                <button id="print-button" onclick="window.print()"
+                        class="flex items-center space-x-2 py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m0 0l3 3m-3-3l-3 3m3-3v-7a2 2 0 012-2h4a2 2 0 012 2v7m0 0l-3 3m3-3l3 3" />
+                    </svg>
+                    <span>Print Confirmation</span>
+                </button>
+                <button id="new-application-button"
+                        class="flex items-center space-x-2 py-2 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150">
+                    Start New Application
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Use document.ready for jQuery initialization
+        $(document).ready(function() {
+            // Function to handle form submission
+            $('#application-form').on('submit', function(e) {
+                // Prevent the default HTML form submission which would cause a page reload
+                e.preventDefault();
+
+                // Simple client-side validation using jQuery's checkValidity
+                if (this.checkValidity() === false) {
+                    console.error("Form validation failed.");
+                    // Trigger native browser validation UI
+                    this.reportValidity();
+                    return;
+                }
+
+                // 1. Collect Data using jQuery .serializeArray()
+                let formData = {};
+                $(this).serializeArray().forEach(item => {
+                    formData[item.name] = item.value;
+                });
+
+                // 2. Format and display the collected data
+                let dataHtml = '';
+                
+                // Helper function to create a styled data row
+                const createDataRow = (label, value) => {
+                    return `
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-3 border-b border-blue-100 last:border-b-0">
+                            <span class="font-medium text-gray-700 sm:col-span-1">${label}:</span>
+                            <span class="text-gray-900 sm:col-span-2 break-words">${value}</span>
+                        </div>
+                    `;
+                };
+
+                // Combine name fields for display
+                const fullName = `${formData.firstName} ${formData.middleName ? formData.middleName + ' ' : ''}${formData.lastName}`;
+                // Combine address fields for display
+                const fullAddress = `${formData.streetAddress}, ${formData.city}, ${formData.stateProvince} ${formData.postalCode}`;
+
+
+                // Append rows in a logical order
+                dataHtml += createDataRow("Full Name", fullName);
+                dataHtml += createDataRow("Gender", formData.gender);
+                dataHtml += createDataRow("Date of Birth", formData.dob);
+                dataHtml += createDataRow("Email Address", formData.email);
+                dataHtml += createDataRow("Phone Number", formData.phone);
+                dataHtml += createDataRow("Full Address", fullAddress);
+                dataHtml += createDataRow("Applied Program", `<span class="px-2 py-1 text-sm font-semibold text-blue-800 bg-blue-200 rounded-full">${formData.applicationType}</span>`);
+                dataHtml += createDataRow("Statement of Interest", `<p class="whitespace-pre-wrap">${formData.statement}</p>`);
+
+                // Insert the formatted data into the display container
+                $('#submitted-data-container').html(dataHtml);
+
+                // 3. Switch view from Form to Success Display
+                $('#registration-form-view').addClass('hidden');
+                $('#submission-success-view').removeClass('hidden');
+
+                // NOTE: If this were a true PHP backend, an AJAX request would be made here.
+            });
+
+            // Handle New Application button click
+            $('#new-application-button').on('click', function() {
+                // Clear the form
+                $('#application-form')[0].reset();
+                // Switch view back to the form
+                $('#submission-success-view').addClass('hidden');
+                $('#registration-form-view').removeClass('hidden');
+                // Clear the displayed data
+                $('#submitted-data-container').empty();
+            });
+        });
+    </script>
+</body>
+</html>
